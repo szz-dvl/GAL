@@ -5,14 +5,8 @@
 											G.A.L
 
 
-· This software is intended to be used as a game "library" or archiver, it will organize games in lists,
-those will be navigable using a gamepad, the configuration file, which must reside in the same directory
-of the source files must be named "confis.json", the file "config.skel" can be used as a skeleton to
-create one.
+· This software is intended to be used as a game "library" or archiver, it will organize games in lists, those will be navigable using a gamepad, the configuration file, which must reside in the same directory of the source files must be named "confis.json", the file "config.skel" can be used as a skeleton to create one.
 
-Moreover, anyone willing to add some functionalities can easely implement extra button responses in a custom
-plugin, the file "plugins/emulator.skel" may be used as a skeleton file to create a custom one, those will need
-to reside under the plugins directory and passed in the "class" field of the config file. If no plugin is
-available for a given game no extra button functionalities will be mapped.
+Moreover, anyone willing to add some functionalities can easely implement extra button responses in a custom plugin, the file "plugins/emulator.skel" may be used as a skeleton file to create a custom one, those will need to reside under the plugins directory and passed in the "class" field of the config file. If no plugin is available for a given game no extra button functionalities will be mapped.
 
 Have fun!
