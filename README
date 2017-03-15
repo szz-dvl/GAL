@@ -7,7 +7,7 @@
 
 · This python app is intended to be used as a game "library" or archiver, it will organize games in lists, those will be navigable using a gamepad, the configuration file, which must reside in the same directory of the source files must be named "confis.json", the file "config.skel" can be used as a skeleton to create one.
 
-By default there will be button combinations to change the next slot to be loaded (usefull for emulators) binded to the left / right arrow keys ("lr_arrows") and to increse and decrese the volume binded to the up / down arrows of the gamepad ("ud_arrows"). To trigger this functionalities the master button ("mtr_btn") must be pressed. Additionally if one hold the four rear triggers (R1,R2,L1,L2) while master button is pressed thr current session will be killed and the list navigation will be again accessible.
+By default there will be button combinations to change the next slot to be loaded (usefull for emulators) binded to the left / right arrow keys ("lr_arrows") and to increse and decrese the volume binded to the up / down arrows of the gamepad ("ud_arrows"). To trigger this functionalities the master button ("mtr_btn") must be pressed. Additionally if one hold the four rear triggers (R1,R2,L1,L2) while master button is pressed the current session will be killed and the game lists will be again navigable.
 
 Moreover, anyone willing to add some functionalities can easely implement extra button responses in a custom plugin, the file "plugins/emulator.skel" may be used as a skeleton file to create it, those will need to reside under the plugins directory and passed in the "class" field of the config file. If no plugin is available for a given game or emulator no extra button functionalities will be mapped.
 
