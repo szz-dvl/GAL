@@ -18,10 +18,8 @@ from evdev import InputDevice
 import signal
 import alsaaudio
 import psutil
-from threading import Timer
 import re
 import logging
-import traceback
 from pyjon.events import EventDispatcher
 
 PARAMETERS = init.master_cfg["parameters"]

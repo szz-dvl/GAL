@@ -1,0 +1,99 @@
+from emulator import Emulator
+
+class My_Game(Emulator):
+
+    def __init__(self, parent=None, info=None, gamepad=None, source=None, game=None):
+
+        super(My_Game, self).__init__(parent, gamepad, source, info, game)
+
+    # Superclass available attributes and functions:
+    # 
+    # @self.state: ment to store information token from ini files.
+    # @self.window: A window object with functions to:
+    #
+    #       * press a key. [window.press_key(key, times, interval)]
+    #       * release a key. [window.release_key(key, times, interval)]
+    #       * tap a key (press + release). [window.tap_key(key, times, interval)]
+    #       * send a key combination. [window.multi_key(tap, hold, times, interval)]
+    #
+    # @self.infoMsg(message, level): Function to show an info message in top of the
+    #                                game screen, the level will only change the
+    #                                background color of the message.
+    #
+    # @self.kill_session(): Finish this sesssion.
+    #
+    # Any of the following functions must return a value evaluating to
+    # "False" or not be pressent at all if the functionality is
+    # not implemented or "True" if any action is taken.
+        
+    # getKeys:
+    #
+    # @file: path to init/config file to be parsed
+    # @keys: array of keys
+    #
+    # For this function we will get a file path and an array of keys,
+    # there is also a class attribute "self.state" available to store
+    # information during the live of the instance.
+    
+    def getKeys (self, file, keys):
+	return None
+
+    # Save_cmd:
+    #
+    # This function will be triggered when the master button, "mtr_btn"
+    # in the config file, is pressed less than one second.
+    # It is intended to be used as a save command, however
+    # it is need to be done for each game. 
+    
+    def Save_cmd (self, slot):
+        return NotImplemented
+
+    # Load_cmd:
+    #
+    # This function will be triggered when the master button, "mtr_btn"
+    # in the config file, is pressed more than one second without any
+    # other interruption in between.
+    #
+    # It is intended to be used as a load command, however
+    # it is need to be done for each game. 
+    
+    def Load_cmd (self, slot, slot_dest):
+        return NotImplemented
+
+    # The following functions will be triggered when the corresponding
+    # buttons are tapped while the master button (mtr_btn) is pressed.
+
+    # R1 button:
+    def R1_Btn (self):
+        return False
+
+    # L1 button:
+    def L1_Btn (self):
+        return False
+
+    # R2 button:
+    def R2_Btn (self):
+        return False
+
+    # L2 button
+    def L2_Btn (self):
+        return False
+
+    # X button
+    def X_Btn (self):
+        return False
+
+    # Square button
+    def Square_Btn (self):
+        return False
+
+    # Circle button
+    def Circle_Btn (self):
+        return False
+
+    # Triangle button
+    def Triangle_Btn (self):
+        return False
+
+
+__all__=["My_Game"]
