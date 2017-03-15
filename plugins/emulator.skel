@@ -28,8 +28,8 @@ class My_Game(Emulator):
         
     # getKeys:
     #
-    # @file: path to init/config file to be parsed
-    # @keys: array of keys
+    # @file: path to init/config file to be parsed.
+    # @keys: array of keys.
     #
     # For this function we will get a file path and an array of keys,
     # there is also a class attribute "self.state" available to store
@@ -40,17 +40,23 @@ class My_Game(Emulator):
 
     # Save_cmd:
     #
+	# @slot: slot number to save the game.
+	# 
     # This function will be triggered when the master button, "mtr_btn"
     # in the config file, is pressed less than one second.
     # It is intended to be used as a save command, however
-    # it is need to be done for each game. 
-    
+	# it is need to be done for each game. 
+    # 
+	
     def Save_cmd (self, slot):
         return NotImplemented
 
     # Load_cmd:
     #
-    # This function will be triggered when the master button, "mtr_btn"
+	# @slot: current slot number.
+	# @slot_dest: slot to load.
+	#
+	# This function will be triggered when the master button, "mtr_btn"
     # in the config file, is pressed more than one second without any
     # other interruption in between.
     #

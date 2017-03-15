@@ -662,7 +662,7 @@ class Gen_Emulator(Emulator):
 
     def __init__(self, parent=None, info=None, gamepad=None, source=None, game=None):
 
-        super(Gen_Emulator, self).__init__(parent, None, source, info, game)
+        super(Gen_Emulator, self).__init__(parent, gamepad, source, info, game)
 
         
 __all__ = ['Emulator', 'Gen_Emulator']
