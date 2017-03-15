@@ -1,0 +1,85 @@
+{
+    "lists": [ //Every parameter in this section is optional.
+        {
+            "lid": "List_type_1", //List ID
+            "source": "/absolute/path/to/directory", // If it is given, it will indicate the directory containing game files, otherwise we'll need a list of instances, like the latter one.
+			"ext": ".iso", // extension of the game files (p.ex: .iso, .n64, .z64, etc ..., only needed if "source" is given)
+			"title": "title of the list",
+			"class": "plugin.Class_name", // name of the "plugin" containing the class implementing the functions for each button, followed by a dot and the name of the class.
+			"emu": { // Section to define the emulator that will be used to run the games in the "source" directory, this is mandatory if "source" is given.
+			    "panel": // Boolean, if evaluates true info messages will be shown, otherwise no message will appear.
+				"name": "PCSX2", // string that will be used to identify the window of the emulator, this option is MANDATORY.
+				"bin": "/path/to/PCSX2", // absolute path to emulator binary, this option is MANDATORY.
+				"opt": [ "--first_opt", "--second_opt", etc... ], // options that will be appended to the emulator command.
+				"ini_file": "/absolute/path/to/ini/file/", // if this is present it will be passed as a first parameter to the function get_keys(), where the file is meant to be parsed.
+				"ini_kwd": ["FrameLimitEnable", "FrameSkipEnable"] // this array will be passed as a second argument to the function get_keys().     
+			}
+			"extra": { //Extra options for particular games, will be appended after general options.
+				"GameFile_name_pattern_1": ["--extra_opt11", "--extra_opt12", etc ...], 
+				"GameFile_name_pattern_2": ["--extra_opt21", "--extra_opt22", etc ...]
+			}
+        },
+		{
+            "lid": "List_type_2", //List ID
+			"title": "title of the list",
+			"extra": { // If no "source" is given, "extra" key must contain a list of game instances, identified for the tag that will be shown to the user.
+				"Xonotic": {
+					"panel": false,
+					"mode": "d", //mode for the game pad, "d" -> DirectInput, "x"-> XInput [default: "x"]
+					"name": "Xonotic",
+					"class": "xonotic.Xonotic",
+					"bin": "/path/to/xonotic-linux-sdl.sh",
+					"opt": ["-basedir", "/path/to/Xonotic"]
+				},
+				"Team Fortress 2": {
+					"steam": true, //If this option evaluates to true steam will be initialized in the background.
+					"panel": false,
+					"name": "Team Fortress 2",
+					"bin": "/path/to/hl2.sh",
+					"opt": ["-game", "/path/to/steam/steamapps/common/Team Fortress 2/tf"]
+				}
+			}
+        }
+    ],
+    "pad": {  //Game Pad configuration, example for Logitech F710, if this is not given no gamepad will be available [TO-DO: list navigation without gamepad!]
+		"path": "/dev/input/eventXX", //path to the game pad device 
+        "keysx": { 
+			"mtr_btn": 316, 
+			"ud_arrows": 17,
+			"lr_arrows": 16,
+			"R1": 311,
+			"R2": 5,
+			"L1": 310,
+			"L2": 2,
+			"X": 304,
+			"Sqre": 307,
+			"Circ": 305,
+			"Tri": 308
+		},
+		"keysd": {
+			"mtr_btn": 313,
+			"ud_arrows": 17,
+			"lr_arrows": 16,
+			"R1": 309,
+			"R2": 311,
+			"L1": 308,
+			"L2": 310,
+			"X": 305,
+			"Sqre": 304,
+			"Circ": 306,
+			"Tri": 307
+		}
+		
+    },
+    "parameters": { //General options, those are mandatory.
+
+		"APPWIDTH": 1024,
+		"APPHEIGHT": 640,
+		"INFOWIDTH": 640,		
+		"INFOHEIGHT": 40,
+		"SCREEN_X": 1680,
+		"SCREEN_Y": 1050,
+		"NICE_WDW": false, //testing purposes, to be used in a dedicated X session.
+		"STEAM_KEEP_ALIVE": false //if this evaluates to true, the first steam session started will be kept alive. 
+    }
+}

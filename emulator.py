@@ -330,25 +330,35 @@ class Emulator(object):
         
         self.name = nfo["name"]
         self.bin = nfo["bin"]
-        
+
+        if "steam" in nfo.keys():
+          if not init.steam_running:
+            
+            self.steam = HiddenWindow("steam")
+            self.steam.add_listener("hidden", self.__run_game, game)
+            init.steam_running = True
+            
+          else
+          
+            self.steam = True
+            self.__run_game(game)
+            
+        else:
+          self.__run_game(game)
+            
         self.opt = nfo["opt"] if "opt" in nfo.keys() else None
         self.mode = nfo["mode"] if "mode" in nfo.keys() else "x"
         self.panel = nfo["panel"] if "panel" in nfo.keys() else True
         self.killd = {'R1': False, 'L1': False, 'L2': False, 'R2': False}
-        self.steam = HiddenWindow("steam") if "steam" in nfo.keys() else None
+        
         self.session = None
         self.flag = False
-
+        
         if "ini_file" in nfo.keys():
             self.state = self.getKeys(nfo["ini_file"], nfo["ini_kwd"])
         else:
             self.state = None
-            
-        if self.steam:    
-            self.steam.add_listener("hidden", self.__run_game, game)
-        else:
-            self.__run_game(game)
-            
+        
     def __run_game (self, game):
         
         pconn, cconn = Pipe()
@@ -443,10 +453,12 @@ class Emulator(object):
             for proc in psutil.process_iter():
                 if proc.name().find(exename) != -1:
                     proc.kill()
-                elif self.steam and not PARAMETERS["STEAM_KEEP_ALIVE"]: # parameters are mandatory entries in cfg file!
+                elif self.steam and not PARAMETERS["STEAM_KEEP_ALIVE"]:
                     if proc.name().find("steam") != -1:
-                        proc.kill()
-                        
+                      proc.kill()
+                      init.steam_running = False
+                      
+                      
         except OSError:
             pass
         

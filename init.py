@@ -39,6 +39,7 @@ class CfgMgr(dict):
             
 master_cfg = CfgMgr()
 master_dpy = Display()
+steam_running = False
 PARAMETERS = master_cfg["parameters"]
 info = None
 
