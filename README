@@ -5,7 +5,7 @@
 						G.A.L
 
 
-· This software is intended to be used as a game "library" or archiver, it will organize games in lists, those will be navigable using a gamepad, the configuration file, which must reside in the same directory of the source files must be named "confis.json", the file "config.skel" can be used as a skeleton to create one.
+· This python app is intended to be used as a game "library" or archiver, it will organize games in lists, those will be navigable using a gamepad, the configuration file, which must reside in the same directory of the source files must be named "confis.json", the file "config.skel" can be used as a skeleton to create one.
 
 By default there will be button combinations to change the next slot to be loaded (usefull for emulators) binded to the left / right arrow keys ("lr_arrows") and to increse and decrese the volume binded to the up / down arrows of the gamepad ("ud_arrows"). To trigger this functionalities the master button ("mtr_btn") must be pressed.
 
