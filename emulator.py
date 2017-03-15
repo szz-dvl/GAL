@@ -331,21 +331,6 @@ class Emulator(object):
         self.name = nfo["name"]
         self.bin = nfo["bin"]
 
-        if "steam" in nfo.keys():
-          if not init.steam_running:
-            
-            self.steam = HiddenWindow("steam")
-            self.steam.add_listener("hidden", self.__run_game, game)
-            init.steam_running = True
-            
-          else
-          
-            self.steam = True
-            self.__run_game(game)
-            
-        else:
-          self.__run_game(game)
-            
         self.opt = nfo["opt"] if "opt" in nfo.keys() else None
         self.mode = nfo["mode"] if "mode" in nfo.keys() else "x"
         self.panel = nfo["panel"] if "panel" in nfo.keys() else True
@@ -358,7 +343,22 @@ class Emulator(object):
             self.state = self.getKeys(nfo["ini_file"], nfo["ini_kwd"])
         else:
             self.state = None
-        
+            
+        if "steam" in nfo.keys():
+          if not init.steam_running:
+            
+            self.steam = HiddenWindow("steam")
+            self.steam.add_listener("hidden", self.__run_game, game)
+            init.steam_running = True
+            
+          else:
+          
+            self.steam = True
+            self.__run_game(game)
+            
+        else:
+          self.__run_game(game)
+            
     def __run_game (self, game):
         
         pconn, cconn = Pipe()
