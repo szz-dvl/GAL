@@ -1,13 +1,14 @@
 from emulator import Emulator
 import time
 
+# Example for PCSX2 emulator:
+
 class PS2_Emulator(Emulator):
 
     def __init__(self, parent=None, info=None, gamepad=None, source=None, game=None):
 
         super(PS2_Emulator, self).__init__(parent, gamepad, source, info, game)
         
-    #@classmethod
     def getKeys (self, file, keys):
             
         f = open(file, "r")
@@ -24,7 +25,6 @@ class PS2_Emulator(Emulator):
 
         return ret
 
-    #@classmethod
     def R1_Btn (self):
 
         push = self.state["FrameSkipEnable"] = not self.state["FrameSkipEnable"]
@@ -35,7 +35,6 @@ class PS2_Emulator(Emulator):
         
         return True
     
-    #@classmethod
     def L1_Btn (self):
 
         push = self.state["FrameLimitEnable"] = not self.state["FrameLimitEnable"]
@@ -46,7 +45,6 @@ class PS2_Emulator(Emulator):
         
         return True
     
-    #@classmethod    
     def R2_Btn (self):
 
         self.infoMsg("Hwd/Swd switch tapped.")
@@ -54,7 +52,6 @@ class PS2_Emulator(Emulator):
         
         return True
         
-    #@classmethod
     def L2_Btn (self):
         
         ara = time.strftime("%H:%M:%S", time.gmtime())
@@ -62,7 +59,6 @@ class PS2_Emulator(Emulator):
 
         return True
         
-    #@classmethod
     def Save_cmd (self, slot):
 
         self.infoMsg("Saving slot " + str(slot) + "...")
@@ -70,7 +66,6 @@ class PS2_Emulator(Emulator):
         self.window.tap_key('F2')
         self.window.tap_key('F1')
         
-    #@classmethod
     def Load_cmd (self, slot, slot_dest):
         
         if (slot_dest == slot):
@@ -92,19 +87,15 @@ class PS2_Emulator(Emulator):
                 self.window.tap_key('F2', n=(slot - slot_dest))
                 
     
-    #@classmethod
     def X_Btn (self, state):
         return False
         
-    #@classmethod
     def Square_Btn (self, state):
         return False
 
-    #@classmethod
     def Circle_Btn (self, state):
         return False
         
-    #@classmethod
     def Triangle_Btn (self, state):
         return False
     

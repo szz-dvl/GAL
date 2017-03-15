@@ -1,6 +1,8 @@
 from emulator import Emulator
 import time
 
+# Poor example for Xonotic:
+
 class Xonotic (Emulator):
 
     def __init__(self, parent=None, info=None, gamepad=None, source=None, game=None):

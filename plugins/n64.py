@@ -1,6 +1,8 @@
 from emulator import Emulator
 import time
 
+#Example for Mupen64Plus emulator:
+
 class N64_Emulator(Emulator):
 
     def __init__(self, parent=None, info=None, gamepad=None, source=None, game=None):
