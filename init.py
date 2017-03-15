@@ -8,11 +8,12 @@ import wx.lib.newevent as NE
 import wx
 import time
 from Xlib.display import Display
+import os
 
 UpdateEvent, EVT_UPDT = NE.NewEvent()
 EndSessionEvent, EVT_ENDSES = NE.NewEvent()
 
-MASTER_CFG = "./confis.json"
+MASTER_CFG = os.path.dirname(sys.argv[0]) + "/confis.json"
 
 class GamePad():
     def __init__(self, path, keysx, keysd):

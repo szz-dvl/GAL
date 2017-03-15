@@ -80,6 +80,6 @@
 		"SCREEN_X": 1680,
 		"SCREEN_Y": 1050,
 		"NICE_WDW": false, //testing purposes, to be used in a dedicated X session.
-		"STEAM_KEEP_ALIVE": false //if this evaluates to true, the first steam session started will be kept alive. 
+		"STEAM_KEEP_ALIVE": false //if this evaluates to true, the first steam session started will be kept alive.
     }
 }
