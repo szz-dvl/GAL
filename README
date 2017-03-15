@@ -2,7 +2,7 @@
 
 
 
-											G.A.L
+						G.A.L
 
 
 · This software is intended to be used as a game "library" or archiver, it will organize games in lists, those will be navigable using a gamepad, the configuration file, which must reside in the same directory of the source files must be named "confis.json", the file "config.skel" can be used as a skeleton to create one.
