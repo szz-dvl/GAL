@@ -345,17 +345,18 @@ class Emulator(object):
         if "steam" in nfo.keys():
           if not init.steam_running:
             
-            self.steam = HiddenWindow("steam")
-            self.steam.add_listener("hidden", self.__run_game, game)
-            init.steam_running = True
+              self.steam = HiddenWindow("steam")
+              self.steam.add_listener("hidden", self.__run_game, game)
+              init.steam_running = True
             
           else:
           
-            self.steam = True
-            self.__run_game(game)
+              self.steam = True
+              self.__run_game(game)
             
         else:
-          self.__run_game(game)
+            self.steam = False
+            self.__run_game(game)
             
     def __run_game (self, game):
         
@@ -438,6 +439,7 @@ class Emulator(object):
     def kill_session (self):
 
         try:
+            
             os.kill(self.session, signal.SIGTERM)
         
             if psutil.pid_exists(self.session):
@@ -445,24 +447,26 @@ class Emulator(object):
 
                 if psutil.pid_exists(self.session):
                     os.kill(self.session, signal.SIGKILL)
-                    
+
             exename = os.path.split(self.bin)[1].split(".")[0]
-            
+        
             for proc in psutil.process_iter():
-                if proc.name().find(exename) != -1:
+                pname = proc.name()
+
+                if pname.find(exename) != -1:
                     proc.kill()
+
                 elif self.steam and not PARAMETERS["STEAM_KEEP_ALIVE"]:
-                    if proc.name().find("steam") != -1:
-                      proc.kill()
-                      init.steam_running = False
-                      
-                      
+                    if pname.find("steam") != -1:
+                        proc.kill()
+                        init.steam_running = False
+                    
         except OSError:
             pass
-        
+            
         self.session = None
         wx.PostEvent(self.parent, init.EndSessionEvent())
-    
+            
     def onlyOne (self, mykey):
       
       res = True

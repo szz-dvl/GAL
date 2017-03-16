@@ -25,7 +25,7 @@ init.create_panel()
 
 frame = wx.Frame(None, -1, 'gal.py')
 frame.SetSize(wx.Size(PARAMETERS["APPWIDTH"],PARAMETERS["APPHEIGHT"]))
-frame.SetTitle('Game Abstraction Layer')
+frame.SetTitle('Gaming Abstraction Layer')
 frame.CenterOnScreen()
 frame.Show()
 frame.Raise()
@@ -158,7 +158,7 @@ class PagedListMgr(wx.Panel):
 
     def restart (self, ev):
         
-        if self.session and not hasattr(ev, 'error'):
+        if self.session:
             self.session = None
 
         if self.gamepad is not None:
