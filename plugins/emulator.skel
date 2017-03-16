@@ -21,7 +21,8 @@ class My_Game(Emulator):
     #                                background color of the message.
     #
     # @self.kill_session(): Finish this sesssion.
-    #
+
+
     # Any of the following functions must return a value evaluating to
     # "False" or not be pressent at all if the functionality is
     # not implemented or "True" if any action is taken.
@@ -36,7 +37,7 @@ class My_Game(Emulator):
     # information during the live of the instance.
     
     def getKeys (self, file, keys):
-	return None
+		return None
 
     # Save_cmd:
     #
