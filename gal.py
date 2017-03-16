@@ -158,7 +158,7 @@ class PagedListMgr(wx.Panel):
 
     def restart (self, ev):
         
-        if self.session:
+        if self.session and not hasattr(ev, 'error'):
             self.session = None
 
         if self.gamepad is not None:
