@@ -81,5 +81,6 @@
 		"SCREEN_Y": 1050,
 		"NICE_WDW": false, //testing purposes, to be used in a dedicated X session.
 		"STEAM_KEEP_ALIVE": false //if this evaluates to true, the first steam session started will be kept alive.
+		"QUIT_CMD": ["sudo", "pm-suspend"] //Whatever command (input for Popen), triggered when master button is pressed in the game list view.
     }
 }
