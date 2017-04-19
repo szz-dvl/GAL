@@ -451,7 +451,7 @@ class Emulator(object):
             exename = os.path.split(self.bin)[1].split(".")[0]
         
             for proc in psutil.process_iter():
-                pname = proc.name()
+                pname = proc.as_dict()['name']
 
                 if pname.find(exename) != -1:
                     proc.kill()
