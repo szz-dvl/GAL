@@ -62,7 +62,7 @@ class GameList(wx.ListCtrl):
         self.items = []
         self.maxitem = 0
         
-        self.font = wx.Font(pointSize=18, family=wx.SWISS, style=wx.NORMAL, weight=wx.FONTWEIGHT_BOLD, underline=False, face="", encoding=wx.FONTENCODING_DEFAULT)
+        self.font = wx.Font(18, wx.SWISS, wx.NORMAL, wx.FONTWEIGHT_BOLD, underline=False, faceName="", encoding=wx.FONTENCODING_DEFAULT)
         self.SetFont(self.font)
 
         if self.source:
@@ -100,7 +100,7 @@ class GameList(wx.ListCtrl):
     def insert_item(self, item):
             
         self.items.append(item)
-        self.InsertStringItem(self.maxitem, item.file)
+        self.InsertItem(self.maxitem, item.file)
             
     
 class PagedListMgr(wx.Panel):

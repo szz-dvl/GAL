@@ -57,7 +57,7 @@ class InfoPanel(wx.Frame):
       
       self.txt.SetForegroundColour(wx.Colour(255, 255, 255))
       
-      self.font = wx.Font(pointSize=22, family=wx.SWISS, style=wx.NORMAL, weight=wx.FONTWEIGHT_BOLD, underline=False, face="", encoding=wx.FONTENCODING_DEFAULT)
+      self.font = wx.Font(22, wx.SWISS, wx.NORMAL, wx.FONTWEIGHT_BOLD, underline=False, faceName="", encoding=wx.FONTENCODING_DEFAULT)
       self.txt.SetFont(self.font)
 
       self.amount = 255
