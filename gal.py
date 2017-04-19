@@ -8,6 +8,7 @@ import wx.lib.newevent as NE
 from collections import OrderedDict
 import threading
 import time
+import subprocess
 
 import init
 from emulator import Gen_Emulator
@@ -245,7 +246,7 @@ class PagedListMgr(wx.Panel):
                   visible.Select(actual + 1)
                           
           # Left/Right arrows
-          if event.code == keys['lr_arrows']:
+          elif event.code == keys['lr_arrows']:
  
             if event.value == -1:
               visible = self.prev_activate()
@@ -258,6 +259,10 @@ class PagedListMgr(wx.Panel):
 
             if itm != -1:
               wx.PostEvent(self, StartSessionEvent(item=visible.get_item(itm)))
+
+          # Master button: Shutdown CMD                
+          elif (event.code == keys['mtr_btn'] and event.value == 0):
+              subprocess.Popen(PARAMETERS['QUIT_CMD'], shell=False)
 
       except (IOError, OSError):
         wx.PostEvent(self, LKBindingEvent(error=True))
