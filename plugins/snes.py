@@ -26,7 +26,7 @@ class ZSNES_Emulator(Emulator):
         
     def R1_Btn (self):
 
-        #sometimes things get a little bit messy ... =S.
+        # sometimes things gets a little bit messy ... =S.
 
         self.slot_mode = False
         self.menu_mode = False
