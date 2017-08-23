@@ -25,7 +25,15 @@ class ZSNES_Emulator(Emulator):
         self.window.release_key(key)
         
     def R1_Btn (self):
-        return False
+
+        #sometimes things get a little bit messy ... =S.
+
+        self.slot_mode = False
+        self.menu_mode = False
+        self.nav_mode = False
+        self.menu_cnt = 0
+        
+        return True
     
     def L1_Btn (self):
 
