@@ -12,3 +12,8 @@ By default there will be button combinations to change the next slot to be loade
 Moreover, anyone willing to add some functionalities can easely implement extra button responses in a custom plugin, the file "plugins/emulator.skel" may be used as a skeleton file to create it, those will need to reside under the plugins directory and passed in the "class" field of the config file. If no plugin is available for a given game or emulator no extra button functionalities will be mapped.
 
 Have fun!
+
+
+To-Do:
+	* Large game lists won't scroll when navigated with gamepad.
+	* Use keyboard as gamepad.

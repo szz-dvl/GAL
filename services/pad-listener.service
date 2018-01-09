@@ -1,0 +1,10 @@
+#This will listen to the needed game pad.
+
+[Unit]
+Description=Pad listerner
+After=rc-local.service
+
+[Service]
+ExecStart=/home/santi/gal/services/pad-listener.py
+ExecStop=/usr/bin/killall pad-listener.py
+Restart=always
