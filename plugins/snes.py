@@ -4,19 +4,6 @@ import time
 #Example for ZSNES emulator:
 
 class ZSNES_Emulator(Emulator):
-<<<<<<< HEAD
-
-    def __init__(self, parent=None, info=None, gamepad=None, source=None, game=None):
-
-        super(ZSNES_Emulator, self).__init__(parent, gamepad, source, info, game)
-        
-    def getKeys (self, file, keys):
-        return None
-  
-    def R1_Btn (self):
-
-        self.window.tap_key('F3')
-=======
     
     def __init__(self, parent=None, info=None, gamepad=None, source=None, game=None):
 
@@ -45,13 +32,10 @@ class ZSNES_Emulator(Emulator):
         self.menu_mode = False
         self.nav_mode = False
         self.menu_cnt = 0
->>>>>>> 4902c0510e743ca3d132f6d0b7844d46ece7f639
-        
+
         return True
     
     def L1_Btn (self):
-<<<<<<< HEAD
-=======
 
         if not self.menu_mode:
             if not self.slot_mode: 
@@ -63,38 +47,13 @@ class ZSNES_Emulator(Emulator):
                 
             self.nav_mode = not self.nav_mode
 
->>>>>>> 4902c0510e743ca3d132f6d0b7844d46ece7f639
         return True
-    
+
     def R2_Btn (self):
         return False
-        
+    
     def L2_Btn (self):
-<<<<<<< HEAD
-        return False
-
-    def Save_cmd (self, slot):
         
-        self.window.tap_key('F2')
-    
-    def Load_cmd (self, slot, slot_dest):
-
-        self.window.tap_key('F4')
-
-    def X_Btn (self):
-        return False
-        
-    def Square_Btn (self):
-        return False
-
-    def Circle_Btn (self):
-        return False
-        
-    def Triangle_Btn (self):
-        return False
-    
-=======
-
         if not self.slot_mode:
             self.zsnes_tap('Escape')
             
@@ -110,7 +69,6 @@ class ZSNES_Emulator(Emulator):
                 self.menu_mode = True
                 self.nav_mode = True
                 
-            
         return True
 
     def Save_cmd (self, slot):
@@ -165,13 +123,11 @@ class ZSNES_Emulator(Emulator):
                 if self.menu_cnt == 0:
                     self.menu_mode = False
                     self.nav_mode = False
-                
-
+                    
         return True
 
     # Navigate mode.
     def Navigate (self, dire):
         self.zsnes_tap(dire);
         
->>>>>>> 4902c0510e743ca3d132f6d0b7844d46ece7f639
 __all__ = ["ZSNES_Emulator"]
