@@ -174,11 +174,11 @@ class GameWindow(BaseWdw):
         # self.emit_event('busy', name)
         
     def __wdws_event(self, name):
-      
+        
         self.__ready = True            
         self.emit_event('ready', name)
                 
-    def __reset (self, name):
+    def __reset (self):
 
         if self.__ready:
             self.__ready = False
@@ -191,6 +191,8 @@ class GameWindow(BaseWdw):
         Looks up the keysym for the character then returns the keycode mapping
         for that keysym.
         """
+        if character == 'SpaceBar':
+            return 65
         
         keysym = Xlib.XK.string_to_keysym(character)
         if not keysym:
@@ -262,7 +264,8 @@ class GameWindow(BaseWdw):
         """
         try:
             self.__handle_key(character, X.KeyPress, mod)
-        except:
+        except Exception as e:
+            logging.exception("message")
             self.__reset()
             pass
         
@@ -274,6 +277,7 @@ class GameWindow(BaseWdw):
         try:
             self.__handle_key(character, X.KeyRelease, mod)
         except:
+            logging.exception("message")
             self.__reset()
             pass
         
@@ -331,6 +335,8 @@ class Emulator(object):
         self.mode = nfo["mode"] if "mode" in nfo.keys() else "x"
         self.panel = nfo["panel"] if "panel" in nfo.keys() else True
         self.killd = {'R1': False, 'L1': False, 'L2': False, 'R2': False}
+
+        self.nav_mode = False
         
         self.session = None
         self.flag = False
@@ -369,12 +375,12 @@ class Emulator(object):
         self.window.add_listener("ready", self.__win_ready)
         
     def __win_ready (self, game, name=None):
-        
+
         if self.gamepad and not self.flag:
             threading.Thread(target=self.upsession_bindings, kwargs={'init_slot': 0}).start()
         
     def __run (self, game, conn):
-            
+        
         cmd = [self.bin]
 
         if self.opt:
@@ -383,7 +389,7 @@ class Emulator(object):
 
         if self.source != "":
             cmd.append(self.source + game)
-            
+        
         conn.send(subprocess.Popen(cmd, shell=False).pid)
         conn.close()
     
@@ -432,6 +438,10 @@ class Emulator(object):
 
     #@abstractmethod
     def Load_cmd (self, slot, slot_dest):
+        pass
+
+    #@abstractmethod
+    def Navigate (self, dire):
         pass
 
     def kill_session (self):
@@ -515,6 +525,62 @@ class Emulator(object):
             if self.session is None:
                 break
 
+            if self.nav_mode:
+                
+                if event.code == keys['mtr_btn']:
+                    if event.value == 0:
+                        master_btn = False
+                        
+                # Up / Down arrows
+                elif event.code == keys['ud_arrows']:
+                        
+                    # Up
+                    if event.value == -1:
+                        self.Navigate('Up')
+                            
+                    # Down
+                    elif event.value == 1:
+                        self.Navigate('Down')
+                           
+                    continue
+                
+                # Left / Right arrows
+                elif event.code == keys['lr_arrows']:
+                
+                    # Left
+                    if event.value == -1:
+                        self.Navigate('Left')
+                            
+                    # Right
+                    elif event.value == 1:
+                        self.Navigate('Right')
+                        
+                    continue
+                        
+                elif event.code == keys['X']:
+                    if event.value == 0:
+                        self.X_Btn()
+                        
+                    continue
+                
+                elif event.code == keys['Tri']:
+                    if event.value == 0:
+                        self.Triangle_Btn()
+                        
+                    continue
+                
+                elif event.code == keys['Sqre']:
+                    if event.value == 0:
+                        self.Square_Btn()
+                        
+                    continue
+                
+                elif event.code == keys['Circ']:
+                    if event.value == 0: 
+                        self.Circle_Btn()
+                        
+                    continue
+                
             # "Master" Button
             if event.code == keys['mtr_btn']:
                 
