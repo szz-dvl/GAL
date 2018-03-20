@@ -98,9 +98,13 @@ class GameList(wx.ListCtrl):
         return self.items[idx]
             
     def insert_item(self, item):
-            
+
+        itm = wx.ListItem()
+        itm.SetText(item.file)
+        itm.SetId(self.maxitem)
+        
         self.items.append(item)
-        self.InsertItem(self.maxitem, item.file)
+        self.InsertItem(itm) 
             
     
 class PagedListMgr(wx.Panel):
