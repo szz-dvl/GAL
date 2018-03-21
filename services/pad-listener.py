@@ -34,7 +34,7 @@ def pad_loop (conf):
     button_x = conf["pad"]["keysx"]["mtr_btn"]
     button_d = conf["pad"]["keysd"]["mtr_btn"]
     onhold = conf["parameters"]["LISTENER_HOLD"]
-    ontab = ' '.join(conf["parameters"]["LISTENER_TAB"])
+    ontap = ' '.join(conf["parameters"]["LISTENER_TAB"])
     
     for event in InputDevice(path).read_loop():
         
@@ -43,7 +43,7 @@ def pad_loop (conf):
             if event.value == 0:
                 if ellapsed.tv_usec > 0:
                     if ellapsed.tdiff(event.sec, event.usec) < 1200:
-                        subprocess.Popen(ontab, shell=True)
+                        subprocess.Popen(ontap, shell=True)
                         break
                     else:
                         subprocess.Popen(onhold, shell=False)
