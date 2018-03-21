@@ -50,7 +50,7 @@ def pad_loop (conf):
             else:
                 ellapsed.tv_usec = event.usec
                 ellapsed.tv_sec = event.sec
-                
+        
 glob_conf = CfgFile()
 error = True
 

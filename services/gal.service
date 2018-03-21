@@ -6,8 +6,8 @@ After=rc-local.service
 
 [Service]
 ExecStartPre=/usr/sbin/service pad-listener stop
-ExecStart=/usr/bin/xinit /path/to/gal/launch.sh -- :1 vt2
-ExecStop=/usr/bin/killall xinit  #be carefull here if you use more than one xinit process ... 
+ExecStart=/usr/bin/xinit [PWD]/launch.sh -- :1 vt2
+ExecStop=/usr/bin/killall xinit
 ExecStopPost=/usr/sbin/service pad-listener start
 Restart=always
 RemainAfterExit=yes

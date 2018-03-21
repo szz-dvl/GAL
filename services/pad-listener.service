@@ -5,6 +5,6 @@ Description=Pad listerner
 After=rc-local.service
 
 [Service]
-ExecStart=/home/santi/gal/services/pad-listener.py
+ExecStart=[PWD]/services/pad-listener.py
 ExecStop=/usr/bin/killall pad-listener.py
 Restart=always
