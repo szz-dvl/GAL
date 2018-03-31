@@ -8,3 +8,6 @@ After=rc-local.service
 ExecStart=[PWD]/services/pad-listener.py
 ExecStop=/usr/bin/killall pad-listener.py
 Restart=always
+
+[Install]
+WantedBy=multi-user.target
