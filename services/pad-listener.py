@@ -44,7 +44,6 @@ def pad_loop (conf):
                 if ellapsed.tv_usec > 0:
                     if ellapsed.tdiff(event.sec, event.usec) < 1200:
                         subprocess.Popen(ontap, shell=True)
-                        break
                     else:
                         subprocess.Popen(onhold, shell=False)
             else:
