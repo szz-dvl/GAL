@@ -82,7 +82,7 @@
 		"NICE_WDW": false, //testing purposes, to be used in a dedicated X session.
 		"STEAM_KEEP_ALIVE": false, //if this evaluates to true, the first steam session started will be kept alive.
 		"QUIT_CMD": ["service", "gal", "stop"], //Whatever command (input for Popen), triggered when master button is pressed in the game list view.
-		"LISTENER_TAB": ["service", "gal", "restart"], //Pad listener, as root.
-		"LISTENER_HOLD": ["pm-suspend"]
+		"LISTENER_TAB": ["service", "gal", "restart"], //Startup service, on tap master button.
+		"LISTENER_HOLD": ["pm-suspend"] //Startup service, on hold master button.
     }
 }
