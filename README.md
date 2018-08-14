@@ -28,11 +28,11 @@ This must suffice to start running the app. To uninstall the app please run the 
 
 ```
 
-###Configuring
+### Configuring
 
 For the application to be able to list your games you may configurate it a little bit. The configuration file, which must reside in the same directory of the source files must be named "confis.json", the file [config.skel](https://github.com/szz-dvl/GAL/blob/master/confis.skel) can be used as a skeleton to create one. This file contains examples to configure yours. However there are three main sections in this json:
 
-####Lists
+#### Lists
 Each object of this array will represent a list of games to be run with a particular emulator, here goes an example for Mupen64Plus:
 
 ```
