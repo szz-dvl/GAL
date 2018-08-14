@@ -77,7 +77,7 @@ class GameList(wx.ListCtrl):
                         for key in extra.keys():
                             if key in file:
                                 item.extra = extra[key]
-                                    
+                                
                     self.insert_item(item)  
                     self.maxitem += 1
                     
@@ -91,12 +91,12 @@ class GameList(wx.ListCtrl):
         else:
             print "WARNING: Empty List!"
             print (info)
-        
+            
         self.Hide()
         
     def get_item(self, idx):
         return self.items[idx]
-            
+    
     def insert_item(self, item):
 
         itm = wx.ListItem()
@@ -105,10 +105,10 @@ class GameList(wx.ListCtrl):
         
         self.items.append(item)
         self.InsertItem(itm) 
-            
+        
     
 class PagedListMgr(wx.Panel):
-     
+    
     def __init__(self, frame=None, lists=[], gamepad=None):
 
         if frame is None or lists == []: #gamepad too?
@@ -120,7 +120,7 @@ class PagedListMgr(wx.Panel):
         self.active = None
         self.session = None
         self.gamepad = gamepad 
-            
+        
         self.lists = OrderedDict()
         
         for list in lists:
@@ -144,16 +144,16 @@ class PagedListMgr(wx.Panel):
 
         if self.active is not None:
             self.lists[self.active].Hide()
-        
+            
             while self.lists[self.active].IsShownOnScreen():
                 continue
-        
+            
         new = self.lists[lid]
         new.Show()
-      
+        
         while not new.IsShownOnScreen():
           continue
-          
+      
         self.active = lid
         
         return new
@@ -168,7 +168,7 @@ class PagedListMgr(wx.Panel):
 
         if self.gamepad is not None:
             threading.Thread(target=self.list_keybinding).start()
-        
+            
     def get_prev(self):
         prev, _, _ = self.lists._OrderedDict__map[self.active]
 
@@ -190,7 +190,7 @@ class PagedListMgr(wx.Panel):
 
     def prev_activate (self):
         return self.set_active(self.get_prev())
-        
+    
     def start_session(self, ev):
 
       lst = self.get_active()
@@ -205,13 +205,13 @@ class PagedListMgr(wx.Panel):
       # ... and we need either an item.instance or a lst.emulator
       if not nfo:
           return
-        
+      
       if item.instance is not None and "class" in item.instance.keys():
-        clazz = item.instance["class"]
+          clazz = item.instance["class"]
       elif lst.clazz:
-        clazz = lst.clazz
+          clazz = lst.clazz
       else:
-        clazz = 'Gen_Emulator'
+          clazz = 'Gen_Emulator'
 
       self.session = eval(clazz)(
           parent = self,
@@ -221,57 +221,61 @@ class PagedListMgr(wx.Panel):
           game = item.file)
       
     def list_keybinding (self):
-  
+        
       visible = self.get_active()
 
       try:
 
         pad = self.gamepad.get_device()
         keys = self.gamepad.keysx
-      
-        for event in pad.read_loop():
         
+        for event in pad.read_loop():
+            
           if self.session is not None:
             break
         
           # Up/Down arrows
           if event.code == keys['ud_arrows']:
-            actual = visible.GetFirstSelected()
-            if actual == -1:
-              visible.Select(0)
-            else:    
+              actual = visible.GetFirstSelected()
               if event.value == -1:
-                visible.Select(actual - 1)
-              
+                  if ((actual - 1) < 0):
+                      visible.EnsureVisible(visible.maxitem - 1)
+                      visible.Select(visible.maxitem - 1)
+                  else:
+                      visible.EnsureVisible(actual - 1)
+                      visible.Select(actual - 1)
+                      
               elif event.value == 1:
-                if ((actual + 1) >= visible.maxitem):
-                  visible.Select(0)
-                else:
-                  visible.Select(actual + 1)
+                  if ((actual + 1) >= visible.maxitem):
+                      visible.EnsureVisible(0)
+                      visible.Select(0)
+                  else:
+                      visible.EnsureVisible(actual + 1)  
+                      visible.Select(actual + 1)
                           
           # Left/Right arrows
           elif event.code == keys['lr_arrows']:
- 
+              
             if event.value == -1:
-              visible = self.prev_activate()
+                visible = self.prev_activate()
             elif event.value == 1:
-              visible = self.next_activate()
-                    
+                visible = self.next_activate()
+                
           # X button                
           elif (event.code == keys['X'] and event.value == 0):
-            itm = visible.GetFirstSelected()
+              itm = visible.GetFirstSelected()
 
-            if itm != -1:
-              wx.PostEvent(self, StartSessionEvent(item=visible.get_item(itm)))
+              if itm != -1:
+                  wx.PostEvent(self, StartSessionEvent(item=visible.get_item(itm)))
 
           # Master button: Shutdown CMD                
           elif (event.code == keys['mtr_btn'] and event.value == 0):
               subprocess.Popen(PARAMETERS['QUIT_CMD'], shell=False)
 
       except (IOError, OSError):
-        wx.PostEvent(self, LKBindingEvent(error=True))
-        init.update_info("Re-binding Pad!", 1)
-        
+          wx.PostEvent(self, LKBindingEvent(error=True))
+          init.update_info("Re-binding Pad!", 1)
+          
 # Testing purposes. (to be used in a dedicated X session)          
 if PARAMETERS["NICE_WDW"]:
     subprocess.Popen(["hsetroot", "-solid", "\"#000000\""], shell=False)
