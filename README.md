@@ -1,8 +1,5 @@
 
-
-
-
-#G.A.L
+# G.A.L
 
 This python app is intended to be used as a game "library" or archiver, it will organize games in lists, those will be navigable using a gamepad. This app is only available for GNU/Linux distributions using Xorg as window server since it makes an intensive use of python Xlib.
 
